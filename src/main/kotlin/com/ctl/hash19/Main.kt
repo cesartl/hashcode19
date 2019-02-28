@@ -1,5 +1,8 @@
 package com.ctl.hash19
 
-class Main {
+object Main {
 
+    fun hello(): String{
+        return "hello"
+    }
 }
