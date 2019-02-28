@@ -28,14 +28,19 @@ data class VPhoto(override val id: Int, override val tags: Set<String>) : Photo(
 
 sealed class Slide {
     abstract val tags: Set<String>
+    abstract val id: String
 }
 
 data class HSlide(val hPhoto: HPhoto) : Slide() {
+    override val id: String
+        get() = hPhoto.id.toString()
     override val tags: Set<String>
         get() = hPhoto.tags
 }
 
 data class VSlide(val left: VPhoto, val right: VPhoto) : Slide() {
+    override val id: String
+        get() = "${left.id} ${right.id}"
     override val tags: Set<String>
         get() = left.tags + right.tags
 }

@@ -8,13 +8,13 @@ internal class MainTest {
 
     val aInput = Photos.parse(InputUtils.getLines("a_example.txt"))
     val bInput = Photos.parse(InputUtils.getLines("b_lovely_landscapes.txt"))
-//    val cInput = Photos.parse(InputUtils.getLines("c_memorable_moments.txt"))
-//    val dInput = Photos.parse(InputUtils.getLines("d_pet_pictures.txt"))
-//    val eInput = Photos.parse(InputUtils.getLines("e_shiny_selfies.txt"))
+    val cInput = Photos.parse(InputUtils.getLines("c_memorable_moments.txt"))
+    val dInput = Photos.parse(InputUtils.getLines("d_pet_pictures.txt"))
+    val eInput = Photos.parse(InputUtils.getLines("e_shiny_selfies.txt"))
 
     fun makeSlide(name: String, photos: List<Photo>, solution: Solution): SlideShow {
         val slide = solution.find(photos)
-        println(slide.score())
+        println("score is " + slide.score())
         println(slide.slides.size)
         slide.write("$name-out.txt")
         return slide
@@ -58,7 +58,7 @@ internal class MainTest {
     @Test
     internal fun testAllTags() {
 //        countTags("a", aInput)
-        countTags("b", bInput)
+//        countTags("b", bInput)
 //        countTags("c", cInput)
 //        countTags("d", dInput)
 //        countTags("e", eInput)
@@ -74,6 +74,9 @@ internal class MainTest {
     @Test
     internal fun testAll() {
         val solution = Solution1()
-        makeSlide("b",bInput, solution)
+//        makeSlide("b", bInput, solution)
+//        makeSlide("c", cInput, solution)
+        makeSlide("d", dInput, solution)
+        makeSlide("e", eInput, solution)
     }
 }
