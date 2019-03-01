@@ -30,3 +30,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
+*-out.txt

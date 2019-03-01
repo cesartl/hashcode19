@@ -76,7 +76,7 @@ internal class MainTest {
         val solution = Solution1()
 //        makeSlide("b", bInput, solution)
 //        makeSlide("c", cInput, solution)
-        makeSlide("d", dInput, solution)
+//        makeSlide("d", dInput, solution)
         makeSlide("e", eInput, solution)
     }
 }

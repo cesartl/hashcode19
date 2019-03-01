@@ -38,11 +38,15 @@ data class HSlide(val hPhoto: HPhoto) : Slide() {
         get() = hPhoto.tags
 }
 
+
 data class VSlide(val left: VPhoto, val right: VPhoto) : Slide() {
-    override val id: String
-        get() = "${left.id} ${right.id}"
-    override val tags: Set<String>
-        get() = left.tags + right.tags
+    override val id: String by lazy {
+        "${left.id} ${right.id}"
+    }
+
+    override val tags: Set<String> by lazy {
+        left.tags + right.tags
+    }
 }
 
 

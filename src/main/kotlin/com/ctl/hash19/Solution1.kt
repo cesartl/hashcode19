@@ -18,6 +18,11 @@ class Solution1 : Solution {
         return SlideShow(orderSLides(hSlides + vSlides))
     }
 
+
+    fun takeIt(current: Slide, candidate: Slide): Boolean{
+        return Math.abs(current.tags.size - candidate.tags.size) / current.tags.size.toDouble() < 0.3
+    }
+
     fun orderSLides(slides: List<Slide>): List<Slide> {
 
         println("number of slides ${slides.size}")
@@ -35,7 +40,9 @@ class Solution1 : Solution {
         while (remaining.isNotEmpty()) {
             val candidates = current.tags.asSequence().flatMap {
                 bigIndex[it]?.asSequence() ?: sequenceOf()
-            }.filter { remaining[it.id] != null }.take(50)
+            }.filter { remaining[it.id] != null }
+//                    .filter { takeIt(current, it) }
+                    .take(2000)
 
             result.add(current)
             if (candidates.iterator().hasNext()) {
@@ -76,32 +83,34 @@ class Solution1 : Solution {
 
         val trash = mutableListOf<VPhoto>()
 
-//        while (remaining.isNotEmpty()) {
-//            val candidates = current.tags.flatMap {
-//                bigIndex[it] ?: listOf()
-//            }.filter { remaining[it.id] != null }.map { it to current.tags.intersect(it.tags).size }.sortedBy { -it.second }
-//
-//            if (candidates.isNotEmpty()) {
-//                val best = candidates.first()
-//                remaining.remove(best.first.id)
-//                val vSlide = VSlide(current, best.first)
-//                slides.add(vSlide)
-//            } else {
-//                trash.add(current)
-//            }
-//            if (remaining.isNotEmpty()) {
-//                current = remaining[remaining.keys.first()]!!
-//                remaining.remove(current.id)
-//            }
-//            if (remaining.size % 10 == 0) {
-//                println(remaining.size)
-//            }
-//        }
+        while (remaining.isNotEmpty()) {
+            val candidates = current.tags.asSequence().flatMap {
+                bigIndex[it]?.asSequence() ?: sequenceOf()
+            }.filter { remaining[it.id] != null }
+                    .take(1000)
+                    .map { it to current.tags.intersect(it.tags).size }.sortedBy { it.second }
 
-        (0 until vPhotos.size / 2).forEach {
-            slides.add(VSlide(vPhotos[2 * it], vPhotos[2 * it + 1]))
+            if (candidates.iterator().hasNext()) {
+                val best = candidates.first()
+                remaining.remove(best.first.id)
+                val vSlide = VSlide(current, best.first)
+                slides.add(vSlide)
+            } else {
+                trash.add(current)
+            }
+            if (remaining.isNotEmpty()) {
+                current = remaining[remaining.keys.first()]!!
+                remaining.remove(current.id)
+            }
+            if (remaining.size % 10 == 0) {
+                println(remaining.size)
+            }
         }
-//
+
+//        (0 until vPhotos.size / 2).forEach {
+//            slides.add(VSlide(vPhotos[2 * it], vPhotos[2 * it + 1]))
+//        }
+////
 
         return slides
     }
