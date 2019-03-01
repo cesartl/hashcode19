@@ -1,6 +1,5 @@
 package com.ctl.hash19
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class MainTest {
@@ -76,7 +75,7 @@ internal class MainTest {
         val solution = Solution1()
 //        makeSlide("b", bInput, solution)
 //        makeSlide("c", cInput, solution)
-//        makeSlide("d", dInput, solution)
-        makeSlide("e", eInput, solution)
+        makeSlide("d", dInput, solution)
+//        makeSlide("e", eInput, solution)
     }
 }

@@ -1,9 +1,6 @@
 package com.ctl.hash19
 
 import java.io.File
-import java.io.InputStream
-import java.io.OutputStream
-import java.lang.IllegalArgumentException
 
 
 sealed class Photo {
@@ -80,7 +77,15 @@ object Photos {
 
     fun scoreSlides(prev: Slide, next: Slide): Int {
         val union = prev.tags.intersect(next.tags)
+        if (union.isEmpty()) {
+            println("*")
+            return 0
+        }
         val l = prev.tags.minus(next.tags)
+        if (l.isEmpty()) {
+            println("#")
+            return 0
+        }
         val r = next.tags.minus(prev.tags)
         return Math.min(union.size, Math.min(l.size, r.size))
     }
