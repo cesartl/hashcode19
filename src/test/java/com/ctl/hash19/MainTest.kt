@@ -73,9 +73,9 @@ internal class MainTest {
     @Test
     internal fun testAll() {
         val solution = Solution1()
-//        makeSlide("b", bInput, solution)
+        makeSlide("b", bInput, solution)
 //        makeSlide("c", cInput, solution)
-        makeSlide("d", dInput, solution)
+//        makeSlide("d", dInput, solution)
 //        makeSlide("e", eInput, solution)
     }
 }

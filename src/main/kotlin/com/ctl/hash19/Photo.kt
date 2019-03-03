@@ -78,12 +78,10 @@ object Photos {
     fun scoreSlides(prev: Slide, next: Slide): Int {
         val union = prev.tags.intersect(next.tags)
         if (union.isEmpty()) {
-            println("*")
             return 0
         }
         val l = prev.tags.minus(next.tags)
         if (l.isEmpty()) {
-            println("#")
             return 0
         }
         val r = next.tags.minus(prev.tags)

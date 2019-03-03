@@ -48,7 +48,7 @@ class Solution1 : Solution {
         val remaining = mutableMapOf<String, Slide>()
         slides.forEach { remaining[it.id] = it }
 
-        var current = slides.first()
+        var current = slides.random()
         remaining.remove(current.id)
         val result = mutableListOf<Slide>()
         while (remaining.isNotEmpty()) {
@@ -56,8 +56,8 @@ class Solution1 : Solution {
                 bigIndex[it]?.asSequence() ?: sequenceOf()
             }.filter { remaining[it] != null }
                     .distinct()
-                    .filter { takeIt(current, remaining[it]!!) }
-                    .take(5000)
+//                    .filter { takeIt(current, remaining[it]!!) }
+//                    .take(5000)
 
             result.add(current)
             if (candidates.iterator().hasNext()) {
@@ -69,7 +69,7 @@ class Solution1 : Solution {
                 remaining.remove(id)
             }
             remaining.remove(current.id)
-            if (remaining.size % 100 == 0) {
+            if (remaining.size % 1000 == 0) {
                 println(remaining.size)
 //                println(cache.stats())
             }
